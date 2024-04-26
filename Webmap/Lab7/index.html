@@ -1,0 +1,95 @@
+<!-- This is to indicate we have an HTML document -->
+<!DOCTYPE html>
+
+<!-- All our code goes within this html tag-->
+<html>
+
+<!-- All the metadata and packages/tools we'll use go in the head.>
+<head>
+
+<!-- The charset attribute specifies the character encoding for the HTML document.-->
+<meta charset="utf-8" />
+
+<!-- The title of your page, which will appear in the browser tab -->
+<title>NYC Housing Flood Risk</title>  
+
+<!-- The size of the viewport vs the rendered page -->
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+
+<!-- We are going to call the Mapbox GL javascript library, which will allow us to use its functionality -->
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js'></script>
+
+<!-- Alongside this, we are going to bring in the Mapbox GL stylesheet -->
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css' rel='stylesheet' />
+
+<!-- You'll be creating this file in a bit -->
+<link href='style.css' rel='stylesheet' />
+
+<!-- This allows us to bring in new fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+
+<!-- The body contains the actual content of a page -->
+<body>
+
+<!-- The "div" tag delineates a "division" or section of the HTML page.-->
+  <div id="map">
+  </div>
+
+
+  	<div class="map-overlay top">
+  	<div class="map-overlay-inner">
+  	<h2>Public and Affordable Housing Flood Risk</h2>
+    <!-- INSERT TEXT HERE -->
+    This web map shows the potential impact of Hurricane Sandy on the New York City Housing Authority (NYCHA) developments. The map uses two data sources from the NYC Open Data portal: the Map of NYCHA Developments and the Sandy Inundation Zone. The NYCHA developments are represented by yellow polygon, and the Sandy Inundation Zone is shown as a blue markers.<br>
+    The map aims to illustrate the vulnerability of the NYCHA residents to coastal flooding and storm surge.
+  	</div>
+  	</div>
+
+<script>
+// You'll be inserting your JS code to initialize your map here
+mapboxgl.accessToken = 'pk.eyJ1IjoiaGg3NTgiLCJhIjoiY2xuMXo5bjQxMDJ5YzJrbGpvbXZudTVudSJ9.SzlG3WInkn7aWBEYPJkw0A'
+const map = new mapboxgl.Map({
+  container: 'map', // container id
+  style: 'mapbox://styles/hh758/clnb2oxm807hp01ph5taph6yv', // replace this with your style URL,
+  center: [-73.935242, 40.730610], // The convention for coordinates is  typically [long, lat]
+  zoom: 12 // The zoom level can be any decimal number
+});
+map.on('load',function(){
+  // Give your layer's source a nickname you'll remember easily. I've called my source `sandy_layer`.
+  map.addSource('sandy_layer',{
+    'type':'vector',
+    'url': 'mapbox://hh758.ckhcynaa'
+  });
+  map.addSource('nycha',{
+    'type':'vector',
+    'url': 'mapbox://hh758.3f41ic51'
+  });
+  // add a new layer with your polygons
+  map.addLayer({
+    'id':'flood_zones',
+    'type':'fill',
+    'source':'sandy_layer',
+    'source-layer':'Sandy_Inundation_Zone-cmkd01',
+    'paint':{
+      'fill-color':'#00158f',
+      'fill-opacity': 0.5
+    }
+  });
+  map.addLayer({
+    'id':'public_housing_developments',
+    'type':'fill',
+    'source':'nycha',
+    'source-layer':'Map_of_NYCHA_Developments-3qgdxt',
+    'paint':{
+      'fill-color':'#FFFF00',
+      'fill-opacity': 0.5
+    }
+  });
+});
+// Within a script, you comment using two backslashes.
+</script>
+
+</body>
+
+</html>
