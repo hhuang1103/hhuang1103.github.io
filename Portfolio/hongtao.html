@@ -160,11 +160,12 @@
 </header>
 
 <div class="tab">
-  <button class="tablinks" onclick="openSection(event, 'About')">About Me</button>
-  <button class="tablinks" onclick="openSection(event, 'Education')">Education Background</button>
-  <button class="tablinks" onclick="openSection(event, 'Writing')">Academic Writing</button>
-  <button class="tablinks" onclick="openSection(event, 'Poster')">Poster</button>
-  <button class="tablinks" onclick="openSection(event, 'Contact')">Contact Me</button>
+  <a href="#About" class="tablinks" onclick="openSection(event, 'About')"><button>About Me</button></a>
+  <a href="#Education" class="tablinks" onclick="openSection(event, 'Education')"><button>Education Background</button></a>
+  <a href="#Writing" class="tablinks" onclick="openSection(event, 'Writing')"><button>Academic Writing</button></a>
+  <a href="#Poster" class="tablinks" onclick="openSection(event, 'Poster')"><button>Poster & Other Maps</button></a>
+  <a href="#Web" class="tablinks" onclick="openSection(event, 'Web')"><button>Web Map (storymap)</button></a>
+  <a href="#Contact" class="tablinks" onclick="openSection(event, 'Contact')"><button>Contact Me</button></a>
 </div>
 
 <div id="About" class="tabcontent">
@@ -270,12 +271,20 @@
   </div>
 </div>
 
+<div id="Web" class="tabcontent">
+  <h3>Web Map</h3>
+  <p>Some text about me.</p>
+</div>
+
 <div id="Contact" class="tabcontent">
   <h3>Contact Me</h3>
   <p>Some text about how to contact me.</p>
 </div>
 
 <script>
+window.onload = function() {
+  location.href = "#About";
+}
 function openSection(evt, sectionName) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
