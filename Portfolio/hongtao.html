@@ -160,7 +160,7 @@
 </header>
 
 <div class="tab">
-  <a href="#About" class="tablinks" onclick="openSection(event, 'About')"><button>About Me</button></a>
+  <a href="#About" id="defaultOpen" class="tablinks" onclick="openSection(event, 'About')"><button>About Me</button></a>
   <a href="#Education" class="tablinks" onclick="openSection(event, 'Education')"><button>Education Background</button></a>
   <a href="#Writing" class="tablinks" onclick="openSection(event, 'Writing')"><button>Academic Writing</button></a>
   <a href="#Poster" class="tablinks" onclick="openSection(event, 'Poster')"><button>Poster & Other Maps</button></a>
@@ -178,26 +178,29 @@
   <div class="timeline">
     <div class="container left">
       <div class="content">
-        <h2>2017</h2>
-        <p>Description of the event.</p>
+        <h2>Present</h2>
+        <p>Master of Regional Planning
+          <br>Minor in Real Estate
+          <br>Cornell University
+          <br>Expected graduation: May 2025</p>
       </div>
     </div>
     <div class="container right">
       <div class="content">
-        <h2>2018</h2>
-        <p>Description of the event.</p>
+        <h2>June 2023</h2>
+        <p>Bachlor of Science in Geographic Information Science
+          <br>Capital Normal University
+        </p>
       </div>
     </div>
     <div class="container left">
       <div class="content">
-        <h2>2019</h2>
-        <p>Description of the event.</p>
-      </div>
-    </div>
-    <div class="container right">
-      <div class="content">
-        <h2>2020</h2>
-        <p>Description of the event.</p>
+        <h2>May 2022</h2>
+        <p>Bachlor of Science in Geography
+          <br>Minor in Statistics
+          <br>Minor in Computer Science
+          <br>Northern Illinois University
+        </p>
       </div>
     </div>
   </div>
@@ -282,9 +285,6 @@
 </div>
 
 <script>
-window.onload = function() {
-  location.href = "#About";
-}
 function openSection(evt, sectionName) {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
@@ -298,6 +298,9 @@ function openSection(evt, sectionName) {
   document.getElementById(sectionName).style.display = "block";
   evt.currentTarget.className += " active";
 }
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
 </script>
 
 </body>
